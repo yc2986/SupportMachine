@@ -1,0 +1,28 @@
+{
+  "name": "supportmachine",
+  "version": "1.0.0",
+  "description": "A service that enable interactive customer registration for lab usage.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build": "webpack -p",
+    "clean": "rimraf public/*"
+  },
+  "author": "yc2986",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "redux": "latest",
+    "redux-form": "latest"
+  },
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-preset-es2017": "latest",
+    "babel-preset-react": "latest",
+    "webpack": "latest",
+    "rimraf": "latest"
+  }
+}
