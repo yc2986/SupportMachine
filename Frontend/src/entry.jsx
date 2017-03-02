@@ -3,4 +3,4 @@ import { render } from 'react-dom'
 import Index from './view/index.jsx'
 
 
-render(<Index/>, document.getElementById('aa'));
+render(<Index/>, document.getElementById('index'));
