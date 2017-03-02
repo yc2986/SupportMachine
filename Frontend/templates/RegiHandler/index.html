@@ -1,5 +1,10 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-    <div id = "index" />
+<div id = "aa" />
 {% endblock %}
+
+{% block script %}
+<script src = "{% static 'public/SupportMachine.js' %}" type = "text/javascript"></script>
+{% endblock script %}
