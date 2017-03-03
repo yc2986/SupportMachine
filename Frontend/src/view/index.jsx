@@ -1,5 +1,6 @@
-import React from 'react'
-import DolbyHeader from './static/dolbyheader.jsx'
+import React from "react"
+import DolbyHeader from "./static/dolbyheader.jsx"
+import DolbyFooter from "./static/dolbyfooter.jsx"
 
 const cssBody = 
 {
@@ -15,6 +16,7 @@ class Index extends React.Component
                 <div style = { cssBody }>
                     <h1>This is your Support Machine!</h1>
                 </div>
+                <DolbyFooter />
             </div>
         );
     }

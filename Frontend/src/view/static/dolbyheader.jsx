@@ -1,28 +1,34 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from "react"
 
-/**
- * inline css style for navbar
- */
-const cssNavbarStyle = 
+//inline css style
+const cssHeader = 
 {
-    'color': 'white',
-    'background': '#2C6195',
-    'minHeight': '80px',
+    "color": "white",
+    "background": "#2C6195",
+    "minHeight": "80px",
 };
+
+const cssHeaderTitle =
+{
+    fontFamily: "Monaco, Consolas, Arial",
+}
 
 class DolbyHeader extends React.Component {
 
     render () {
         return (
             <nav className  = "navbar navbar-fixed-top navbar-full navbar-dark" 
-                 style      = { cssNavbarStyle }>
-                {/* Navbar LOGO & APP Title */} 
-                <a className = "navbar-brand">
+                 style      = { cssHeader }>
+                {/* logo */} 
+                <div className = "navbar-brand">
                     <img src    = "static/img/Dolby_Hrztl_White.png"
                          width  = "250" 
                          height = "45" />
-                </a>
+                </div>
+                {/* title */}
+                <div style = { cssHeaderTitle }>
+                    <h2>Support Machine</h2>
+                </div>
             </nav>
         );
     }
