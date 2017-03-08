@@ -25,10 +25,6 @@ class DolbyHeader extends React.Component {
                          width  = "250" 
                          height = "45" />
                 </div>
-                {/* title */}
-                <div style = { cssHeaderTitle }>
-                    <h2>Support Machine</h2>
-                </div>
             </nav>
         );
     }
