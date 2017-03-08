@@ -8,7 +8,7 @@ const cssFooter =
     "bottom": "0",
     "width": "100%",
     "height": "350px",
-    "paddingTop": "25px",
+    "paddingTop": "15px",
     "color": "white",
     "background": "#2C6195",
 };
@@ -19,7 +19,7 @@ const cssTable =
     "border": "none",
     "width": "80%",
     "height": "275px",
-    "margin": "20px 10% 0 15%",
+    "margin": "15px 10% 0 15%",
     "fontFamily": "Consolas, Candara, Verdana",
     "textAlign": "left",
 }
