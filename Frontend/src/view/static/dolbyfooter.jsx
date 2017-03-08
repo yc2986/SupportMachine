@@ -1,5 +1,6 @@
 import React from "react"
 import Social from "./social.jsx"
+import DolbyFooterLink from "./dolbyfooterlink.jsx"
 
 //inline css style
 const cssFooter = 
@@ -7,7 +8,7 @@ const cssFooter =
     "position": "absolute",
     "bottom": "0",
     "width": "100%",
-    "height": "350px",
+    "height": "500px",
     "paddingTop": "15px",
     "color": "white",
     "background": "#2C6195",
@@ -18,7 +19,7 @@ const cssTable =
     "tableLayout": "fixed",
     "border": "none",
     "width": "80%",
-    "height": "275px",
+    "height": "400px",
     "margin": "15px 10% 0 15%",
     "fontFamily": "Consolas, Candara, Verdana",
     "textAlign": "left",
@@ -49,40 +50,135 @@ class DolbyFooter extends React.Component {
                             <td>Investors</td>
                         </tr>
                         <tr>
-                            <td>Cinema</td>
-                            <td>AV Installers and Retailers</td>
-                            <td>Leadership</td>
-                            <td>Company Financials</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/cinema/index.html"
+                                    text="Cinema" 
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/av-installers/industry.html"
+                                    text="AV Installers and Retailers" 
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/leadership/senior-management-officers.html"
+                                    text="Leadership" 
+                                /> 
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="http://investor.dolby.com/releases-financial.cfm"
+                                    text="Company Financials"
+                                />
+                            </td>
                         </tr>
                         <tr>
-                            <td>Home Theater</td>
-                            <td>Broadcast</td>
-                            <td>Worldwide Offices</td>
-                            <td>Corporate Governance</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/home/index.html"
+                                    text="Home Theater"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/broadcast/industry.html"
+                                    text="Broadcast"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/contact-us/dolby-offices-worldwide.html"
+                                    text="Worldwide Offices"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/investors/corporate-governance.html"
+                                    text="Corporate Governance"
+                                />
+                            </td>
                         </tr>
                         <tr>
-                            <td>Mobile</td>
-                            <td>Cinema</td>
-                            <td>Environmental Commitment</td>
-                            <td>Stock Information</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/mobile/index.html"
+                                    text="Mobile"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/cinema/industry.html"
+                                    text="Cinema"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/environmental-commitment.html"
+                                    text="Environmental Commitment"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/investors/stock-information.html"
+                                    text="Stock Information"
+                                />
+                            </td>
                         </tr>
                         <tr>
-                            <td>Office</td>
-                            <td>Content Services</td>
-                            <td>Press Releases</td>
-                            <td>Investor Resources</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/work/index.html"
+                                    text="Office"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/cinema/industry/content-services.html"
+                                    text="Content Services"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/news-and-events/press-releases.html"
+                                    text="Press Releases"
+                                />
+                            </td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/about/investors/investor-resources.html"
+                                    text="Investor Resources"
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Game Development</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/games/industry.html"
+                                    text="Game Development"
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>PC and Mobile</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/H5TwoColumnWideLeft.aspx?pageid=1381"
+                                    text="PC and Mobile"
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Streaming</td>
+                            <td>
+                                <DolbyFooterLink 
+                                    href="https://www.dolby.com/us/en/professional/streaming/industry.html"
+                                    text="Streaming"
+                                />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
