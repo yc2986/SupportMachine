@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack -d --watch",
-    "build": "webpack -p",
+    "build": "webpack --progress -p",
     "clean": "rimraf public/*"
   },
   "author": "yc2986",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "babel-core": "latest",
     "babel-loader": "latest",
+    "babel-preset-es2015": "latest",
     "babel-preset-es2017": "latest",
     "babel-preset-react": "latest",
     "webpack": "latest",

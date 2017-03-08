@@ -6,6 +6,7 @@ const APP_DIR = path.resolve(__dirname, 'src');
 
 const config = {
     entry: APP_DIR + '/entry.jsx',
+    cache: false,
     output: {
         path: BUILD_DIR,
         filename: 'SupportMachine.js'
