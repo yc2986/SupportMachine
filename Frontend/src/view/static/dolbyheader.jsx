@@ -10,7 +10,7 @@ const cssHeader =
 
 const cssHeaderTitle =
 {
-    fontFamily: "Monaco, Consolas, Arial",
+    fontFamily: "Consolas, Candara, Verdana",
 }
 
 class DolbyHeader extends React.Component {

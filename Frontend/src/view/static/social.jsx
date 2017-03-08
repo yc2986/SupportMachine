@@ -8,6 +8,9 @@ const cssSocial =
     "WebkitTransitionDuration": "0.8s",
     "MozTransitionDuration": "0.8s",
     "OTransitionDuration": "0.8s",
+    "color": "white",
+    "marginLeft": "3%",
+    "marginRight": "3%",
 };
 
 const cssSocialOnHover =
@@ -15,7 +18,9 @@ const cssSocialOnHover =
     "WebkitTransform": "scale(1.1)",
     "MozTransform": "scale(1.1)",
     "OTransform": "scale(1.1)",
-    "color": "#f39c12",
+    "color": "#66a3ff",
+    "marginLeft": "3%",
+    "marginRight": "3%",
 };
 
 class Social extends React.Component
