@@ -5,9 +5,9 @@ const cssSocial =
     "WebkitTransform": "scale(0.8)",
     "MozTransform": "scale(0.8)",
     "OTransform": "scale(0.8)",
-    "WebkitTransformDuration": "0.5s",
-    "MozTransformDuration": "0.5s",
-    "OTransformDuration": "0.5s",
+    "WebkitTransitionDuration": "0.8s",
+    "MozTransitionDuration": "0.8s",
+    "OTransitionDuration": "0.8s",
 };
 
 const cssSocialOnHover =
