@@ -11,7 +11,7 @@ const cssFooter =
     "height": "500px",
     "paddingTop": "15px",
     "color": "white",
-    "background": "#2C6195",
+    "background": "black",
 };
 
 const cssTable =

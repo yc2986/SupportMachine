@@ -4,7 +4,7 @@ import React from "react"
 const cssHeader = 
 {
     "color": "white",
-    "background": "#2C6195",
+    "background": "black",
     "height": "80px",
 };
 
