@@ -6,7 +6,7 @@ import DolbyFooterLink from "./dolbyfooterlink.jsx"
 const cssFooter = 
 {
     "position": "absolute",
-    "bottom": "0",
+    "bottom": "-500px",
     "width": "100%",
     "height": "500px",
     "paddingTop": "15px",

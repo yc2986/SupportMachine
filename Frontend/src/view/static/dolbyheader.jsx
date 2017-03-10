@@ -5,7 +5,7 @@ const cssHeader =
 {
     "color": "white",
     "background": "#2C6195",
-    "minHeight": "80px",
+    "height": "80px",
 };
 
 const cssHeaderTitle =
@@ -21,8 +21,8 @@ class DolbyHeader extends React.Component {
                  style      = { cssHeader }>
                 {/* logo */} 
                 <div className = "navbar-brand">
-                    <img src    = "static/img/Dolby_Hrztl_White.png"
-                         width  = "250" 
+                    <img src    = "static/img/Dolby_symbol_White.png"
+                         width  = "60" 
                          height = "45" />
                 </div>
             </nav>

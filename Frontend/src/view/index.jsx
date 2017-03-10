@@ -1,17 +1,16 @@
 import React from "react"
 import DolbyHeader from "./static/dolbyheader.jsx"
 import DolbyFooter from "./static/dolbyfooter.jsx"
+import DolbyVideoJonbtron from "./main/dolbyvideojonbtron.jsx"
 
 const cssReferenceEntryPoint = 
 {
     "position": "relative",
-    "minHeight": "100%",
 }
 
 const cssBody = 
 {
     "marginTop": "80px",
-    "height": "2000px",
 }
 
 class Index extends React.Component
@@ -20,8 +19,18 @@ class Index extends React.Component
         return (
             <div style={ cssReferenceEntryPoint }>
                 <DolbyHeader />
-                <div style = { cssBody }>
-                    <h1>This is your Support Machine!</h1>
+                <div style={ cssBody }>
+                    <DolbyVideoJonbtron 
+                        src = "http://download.dolby.com/us/en/technology/Dolby-Atmos-Ambient-Space-Video.mp4"
+                    >
+                        <img src    = "static/img/Dolby_Hrztl_White.png"
+                             width  = "550" 
+                             height = "100" />
+                        <img src    = "static/img/HearEveryDimension_white.png"
+                             width  = "450" 
+                             height = "100" />
+                        <h1>Service Machine</h1>
+                    </DolbyVideoJonbtron>
                 </div>
                 <DolbyFooter />
             </div>
