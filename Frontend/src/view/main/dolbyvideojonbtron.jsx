@@ -21,7 +21,7 @@ const cssOverlay =
     "zIndex": "1",
     "textAlign": "center",
     "color": "white",
-    "fontFamily": "Consolas, Candara, Verdana",
+    "fontFamily": "Verdana, Consolas, Candara",
 }
 
 class DolbyVideoJonbtron extends React.Component

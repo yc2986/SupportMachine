@@ -10,7 +10,7 @@ const cssHeader =
 
 const cssHeaderTitle =
 {
-    fontFamily: "Consolas, Candara, Verdana",
+    fontFamily: "Verdana, Consolas, Candara",
 }
 
 class DolbyHeader extends React.Component {
@@ -21,8 +21,8 @@ class DolbyHeader extends React.Component {
                  style      = { cssHeader }>
                 {/* logo */} 
                 <div className = "navbar-brand">
-                    <img src    = "static/img/Dolby_symbol_White.png"
-                         width  = "60" 
+                    <img src    = "static/resources/img/Dolby_symbol_White.png"
+                         width  = "70" 
                          height = "45" />
                 </div>
             </nav>

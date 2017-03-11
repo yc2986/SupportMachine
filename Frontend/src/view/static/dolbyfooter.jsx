@@ -21,13 +21,13 @@ const cssTable =
     "width": "80%",
     "height": "400px",
     "margin": "15px 10% 0 15%",
-    "fontFamily": "Consolas, Candara, Verdana",
+    "fontFamily": "Verdana, Consolas, Candara",
     "textAlign": "left",
 }
 
 const cssTableHeader =
 {
-    "fontSize": "18px",
+    "fontSize": "22px",
     "fontWeight": "bold",
 }
 

@@ -6,6 +6,7 @@ const cssLink =
     "MozTransitionDuration": "0.8s",
     "OTransitionDuration": "0.8s",
     "color": "white",
+    "fontSize": "18px",
     "lineHeight": "40px",
 }
 
@@ -14,7 +15,7 @@ const cssLinkOnHover =
     "color": "white",
     "lineHeight": "40px",
     "textDecoration": "none",
-    "fontSize": "110%",
+    "fontSize": "20px",
 }
 
 class DolbyFooterLink extends React.Component
