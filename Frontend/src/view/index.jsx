@@ -1,6 +1,8 @@
 import React from "react"
 import DolbyHeader from "./static/dolbyheader.jsx"
 import DolbyFooter from "./static/dolbyfooter.jsx"
+import Social from "./static/social.jsx"
+import DolbyJonbtron from "./main/dolbyjonbtron.jsx"
 import DolbyVideoJonbtron from "./main/dolbyvideojonbtron.jsx"
 
 const cssReferenceEntryPoint = 
@@ -35,6 +37,12 @@ class Index extends React.Component
                     </DolbyVideoJonbtron>
                     <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4" />
                     <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4" />
+                    <DolbyJonbtron>
+                        <Social href="https://www.facebook.com/dolby/" icon="fa-facebook" />
+                        <Social href="https://twitter.com/dolby" icon="fa-twitter" />
+                        <Social href="https://mp.weixin.qq.com/s/ZG-iaDc1q74hdR_I-LWE6w" icon="fa-weixin" />
+                        <Social href="https://weibo.com/dolbychina" icon="fa-weibo" />
+                    </DolbyJonbtron>
                 </div>
                 <DolbyFooter />
             </div>

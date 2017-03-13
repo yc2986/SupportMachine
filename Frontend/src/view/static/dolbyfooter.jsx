@@ -6,10 +6,9 @@ import DolbyFooterLink from "./dolbyfooterlink.jsx"
 const cssFooter = 
 {
     "position": "absolute",
-    "bottom": "-499px",
+    "bottom": "-500px",
     "width": "100%",
     "height": "500px",
-    "paddingTop": "15px",
     "color": "white",
     "background": "black",
 };
@@ -37,10 +36,6 @@ class DolbyFooter extends React.Component {
         return (
             <nav className = "text-center center-block" 
                  style     = { cssFooter }>
-                <Social href="https://www.facebook.com/dolby/" icon="fa-facebook" />
-                <Social href="https://twitter.com/dolby" icon="fa-twitter" />
-                <Social href="https://mp.weixin.qq.com/s/ZG-iaDc1q74hdR_I-LWE6w" icon="fa-weixin" />
-                <Social href="https://weibo.com/dolbychina" icon="fa-weibo" />
                 <table style = { cssTable }>
                     <tbody>
                         <tr style = { cssTableHeader }>

@@ -4,6 +4,7 @@ import React from "react"
 const cssJonbtron =
 {
     "position": "relative",
+    "marginBottom": "-1px"
 }
 
 const cssVideo =
@@ -27,7 +28,6 @@ const cssOverlay =
 class DolbyVideoJonbtron extends React.Component
 {
     render() {
-        //let playerState = "playsinline autoplay loop".concat(this.state.mute ? " mute" : "");
         return (
             <div style = { cssJonbtron }>
                 <video className = "media-element"
