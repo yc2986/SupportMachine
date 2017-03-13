@@ -25,11 +25,11 @@ class Index extends React.Component
                     >
                         <div>
                             <img src   = "static/resources/img/Dolby_Hrztl_White.png"
-                                width  = "550" 
-                                height = "100" />
+                                width  = "800" 
+                                height = "150" />
                             <img src   = "static/resources/img/HearEveryDimension_white.png"
-                                width  = "450" 
-                                height = "100" />
+                                width  = "900" 
+                                height = "200" />
                             {/*<h1>Service Machine</h1>*/}
                         </div>
                     </DolbyVideoJonbtron>
