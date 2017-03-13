@@ -33,8 +33,8 @@ class Index extends React.Component
                             {/*<h1>Service Machine</h1>*/}
                         </div>
                     </DolbyVideoJonbtron>
-                    <DolbyVideoJonbtron src = "static/resources/video/Dolby-Horizon-3.mp4" />
-                    <DolbyVideoJonbtron src = "static/resources/video/Dolby-Vision.mp4" />
+                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4" />
+                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4" />
                 </div>
                 <DolbyFooter />
             </div>
