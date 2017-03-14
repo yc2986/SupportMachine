@@ -4,6 +4,7 @@ import DolbyFooter from "./static/dolbyfooter.jsx"
 import Social from "./static/social.jsx"
 import DolbyJonbtron from "./static/dolbyjonbtron.jsx"
 import DolbyVideoJonbtron from "./static/dolbyvideojonbtron.jsx"
+import DolbyCarousel from "./static/dolbycarousel.jsx"
 
 const cssReferenceEntryPoint = 
 {
@@ -40,8 +41,21 @@ class Index extends React.Component
                                 height = "200px" />
                         </div>
                     </DolbyVideoJonbtron>
-                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4" />
-                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4" />
+                    <DolbyCarousel sources = {[
+                            /* banner left */
+                            {
+                                "banner": "static/resources/img/DolbyAtmos.png",
+                                "src": "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4",
+                            },
+                            /* banner right */
+                            {
+                                "banner": "static/resources/img/DolbyVision.png",
+                                "src": "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4",
+                            },
+                        ]
+                    }/>
+                    {/*<DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4" />
+                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4" />*/}
                     <DolbyJonbtron>
                         <Social href="https://www.facebook.com/dolby/" icon="fa-facebook" />
                         <Social href="https://twitter.com/dolby" icon="fa-twitter" />

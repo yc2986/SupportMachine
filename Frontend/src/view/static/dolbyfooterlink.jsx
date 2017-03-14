@@ -2,9 +2,7 @@ import React from "react"
 
 const cssLink = 
 {
-    "WebkitTransitionDuration": "0.8s",
-    "MozTransitionDuration": "0.8s",
-    "OTransitionDuration": "0.8s",
+    "transition": "all 0.8s ease",
     "color": "white",
     "fontSize": "18px",
     "lineHeight": "40px",
@@ -12,6 +10,8 @@ const cssLink =
 
 const cssLinkOnHover = 
 {
+    /* take away transition property from on hover for instance scale */
+    // "transition": "all 0.8s ease",
     "color": "white",
     "lineHeight": "40px",
     "textDecoration": "none",

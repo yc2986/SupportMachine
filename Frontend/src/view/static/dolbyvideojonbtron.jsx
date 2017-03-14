@@ -4,7 +4,8 @@ import React from "react"
 const cssJonbtron =
 {
     "position": "relative",
-    "marginBottom": "-1px"
+    "marginBottom": "-1px",
+    "background": "black",
 }
 
 const cssVideo =
