@@ -2,8 +2,8 @@ import React from "react"
 import DolbyHeader from "./static/dolbyheader.jsx"
 import DolbyFooter from "./static/dolbyfooter.jsx"
 import Social from "./static/social.jsx"
-import DolbyJonbtron from "./main/dolbyjonbtron.jsx"
-import DolbyVideoJonbtron from "./main/dolbyvideojonbtron.jsx"
+import DolbyJonbtron from "./static/dolbyjonbtron.jsx"
+import DolbyVideoJonbtron from "./static/dolbyvideojonbtron.jsx"
 
 const cssReferenceEntryPoint = 
 {
