@@ -45,12 +45,12 @@ class Index extends React.Component
                             /* banner left */
                             {
                                 "banner": "static/resources/img/DolbyAtmos.png",
-                                "src": "https://dolby.box.com/shared/static/d4ao0o9wss4qjmg1aen3a1e7bwmxs2ou.mp4",
+                                "src": "https://dolby.box.com/shared/static/e25rx2qvzuhft844kfahsociicw53hiy.mp4",
                             },
                             /* banner right */
                             {
                                 "banner": "static/resources/img/DolbyVision.png",
-                                "src": "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4",
+                                "src": "https://dolby.box.com/shared/static/b18cwiy85eifuywn5a3w6l3l08ns8659.mp4",
                             },
                         ]
                     }/>
