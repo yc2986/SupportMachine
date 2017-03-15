@@ -45,7 +45,7 @@ class Index extends React.Component
                             /* banner left */
                             {
                                 "banner": "static/resources/img/DolbyAtmos.png",
-                                "src": "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4",
+                                "src": "https://dolby.box.com/shared/static/d4ao0o9wss4qjmg1aen3a1e7bwmxs2ou.mp4",
                             },
                             /* banner right */
                             {
