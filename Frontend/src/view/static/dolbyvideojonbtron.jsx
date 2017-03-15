@@ -35,7 +35,8 @@ class DolbyVideoJonbtron extends React.Component
                        style     = { cssVideo }
                        autoPlay  = "autoplay"
                        loop      = "loop"
-                       muted     = "muted">
+                       muted     = "muted"
+                       preload   = "auto">
                     <source src  = { this.props.src }
                             type = "video/webm" />
                 </video>

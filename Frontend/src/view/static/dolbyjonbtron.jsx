@@ -6,7 +6,7 @@ const cssJonbtron =
     "width": "100%",
     "height": "200px",
     "background": "black",
-    "paddingTop": "95px",
+    "paddingTop": "100px",
 }
 
 class DolbyJonbtron extends React.Component

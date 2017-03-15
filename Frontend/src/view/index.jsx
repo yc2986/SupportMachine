@@ -30,12 +30,6 @@ class Index extends React.Component
                             <img src   = "static/resources/img/Dolby_Hrztl_White.png"
                                 width  = "800px" 
                                 height = "150px" />
-                            {/*<img src   = "static/resources/img/HearEveryDimension_white.png"
-                                width  = "900px" 
-                                height = "200px" />
-                            <img src   = "static/resources/img/FeelEveryDimension_white.png"
-                                width  = "700px" 
-                                height = "40px" />*/}
                             <img src   = "static/resources/img/CompletelyCaptivating_white.png"
                                 width  = "900px" 
                                 height = "200px" />
@@ -54,8 +48,6 @@ class Index extends React.Component
                             },
                         ]
                     }/>
-                    {/*<DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/mearbwtvcv3qjlllpyggzrgdps7usnhu.mp4" />
-                    <DolbyVideoJonbtron src = "https://dolby.box.com/shared/static/ny69jf2le8koizyd7iobpsib4naslovi.mp4" />*/}
                     <DolbyJonbtron>
                         <Social href="https://www.facebook.com/dolby/" icon="fa-facebook" />
                         <Social href="https://twitter.com/dolby" icon="fa-twitter" />
