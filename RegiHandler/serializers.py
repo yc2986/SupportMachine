@@ -34,12 +34,14 @@ class DolbyUserSerializer(serializers.Serializer):
             last_name = validated_data.get('last_name', None)    # not required
         )
         user.save()
+        # get DolbyUser data
+        dolbyuser_data = validated_data.get('dolbyuser')
         # create meta data profile
         dlb_user = DolbyUser(
             user = user,
-            company = validated_data.get('company'),
-            registration_code = validated_data.get('registration_code'),
-            phone_number = validated_data.get('phone_number')
+            company = dolbyuser_data.get('company'),
+            registration_code = dolbyuser_data.get('registration_code'),
+            phone_number = dolbyuser_data.get('phone_number')
         )
         dlb_user.save()
         return user
@@ -57,7 +59,8 @@ class DolbyUserSerializer(serializers.Serializer):
         if validated_data.get('last_name', None) is not None:
             user.email = validated_data.get('last_name')
         # update phone number
-        user.dolbyuser.phone_number = validated_data.get('phone_number')
+        if validated_data.get('dolbyuser').get('phone_number', None) is not None:
+            user.dolbyuser.phone_number = validated_data.get('dolbyuser').get('phone_number')
         # update profile first
         user.dolbyuser.save()
         # update info last
@@ -67,9 +70,12 @@ class DolbyUserSerializer(serializers.Serializer):
     def create_or_update(self, validated_data):
         # record exist
         try:
-            return self.update(
-                User.objects.get(user = validated_data.get('username')), 
+            user = User.objects.get(username = User.objects.get(user = validated_data.get('username')))
+            user = self.update(
+                user, 
                 validated_data
             )
-        except User.DoesNotExist:
-            return self.create(validated_data)
+        #except User.DoesNotExist:
+        except:
+            user = self.create(validated_data)
+        return user

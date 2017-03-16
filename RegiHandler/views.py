@@ -22,6 +22,6 @@ def registration(request):
         serializer = DolbyUserSerializer(data = data)
         if serializer.is_valid():
             serializer.create_or_update(serializer.validated_data)
-            return JsonResponse(serializer.data, status = 201)
+            return JsonResponse(serializer.data, status = 200)
         return JsonResponse(serializer.errors, status = 400)
     return JsonResponse({'error': 'request failed.'}, status = 404)
