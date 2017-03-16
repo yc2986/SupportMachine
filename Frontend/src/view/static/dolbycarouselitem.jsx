@@ -60,8 +60,8 @@ class DolbyCarouselItem extends React.Component
                     :
                     /* on mouse leave display logo */
                     <img src    = { this.props.banner }
-                        width  = "280px" 
-                        height = "280px" 
+                        width  = "250px" 
+                        height = "250px" 
                         style  = { cssBanner } />
                 }
             </div>

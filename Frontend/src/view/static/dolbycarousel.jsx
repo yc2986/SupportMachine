@@ -11,9 +11,10 @@ const cssCarousel =
 class DolbyCarousel extends React.Component
 {
     render() {
+        const sources = this.props.sources;
         return (
             <div style = { cssCarousel }>
-                {this.props.sources.map(function(item, id) {
+                {sources.map(function(item, id) {
                     return <DolbyCarouselItem banner = { item.banner } 
                                               src    = { item.src } />
                 })}
