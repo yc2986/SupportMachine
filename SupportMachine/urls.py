@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # RegisHandler URL
     url(r'^$', regi_views.index, name = 'index'),
+    url(r'^token/$', regi_views.token, name = 'token'),
     url(r'^register/$', regi_views.registration, name = 'registration'),
     url(r'^update/$', regi_views.update_profile, name = 'update_profile'),
 ]

@@ -3,9 +3,11 @@ from django.test import TestCase
 import json
 # rest framework
 from RegiHandler.serializers import DolbyUserSerializer
-from rest_framework.test import APIClient
+from rest_framework.test import RequestsClient
 
-client = APIClient()
+#client = APIClient()
+client = RequestsClient()
+csrftoken = client.get('http://testserver/token/').cookies['csrftoken']
 
 # Create your tests here.
 class DolbyUserSerializerTest(TestCase):
@@ -20,7 +22,11 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123456',
             'phone_number': '1234567890',
         }
-        response = client.post('/register/', data, format = 'json')
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
 
     def test_create_user_success(self):
         data = {
@@ -33,7 +39,11 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123456',
             'phone_number': '1234567890',
         }
-        response = client.post('/register/', data, format = 'json')
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         # check successful registration
         self.assertEqual(response.status_code, 200)
     
@@ -47,8 +57,12 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123456',
             'phone_number': '1234567890',
         }
-        response = client.post('/register/', data, format = 'json')
-        # check invalid data
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check invalid input
         self.assertEqual(response.status_code, 400)
     
     def test_create_user_bad_request(self):
@@ -62,17 +76,41 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123456',
             'phone_number': '1234567890',
         }
-        response = client.get('/register/', data, format = 'json')
+        response = client.get(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
-        response = client.put('/register/', data, format = 'json')
+        response = client.put(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
-        response = client.patch('/register/', data, format = 'json')
+        response = client.patch(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
-        response = client.delete('/register/', data, format = 'json')
+        response = client.delete(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
-        response = client.head('/register/', data, format = 'json')
+        response = client.head(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
-        response = client.options('/register/', data, format = 'json')
+        response = client.options(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         self.assertEqual(response.status_code, 404)
     
     def test_create_user_already_exist(self):
@@ -86,9 +124,31 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123456',
             'phone_number': '1234567890',
         }
-        response = client.post('/register/', data, format = 'json')
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         # check duplicate registration
         self.assertEqual(response.status_code, 301)
+    
+    def test_create_user_no_csrf(self):
+        data = {
+            # basic info
+            'username': 'abcdef',
+            'password': '123456',
+            'email': 'abcdef@gmail.com',
+            # profile info
+            'company': 'foo',
+            'registration_code': '123456',
+            'phone_number': '1234567890',
+        }
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+        )
+        # check failed csrf validation
+        self.assertEqual(response.status_code, 403)
     
     def test_update_user_success(self):
         data = {
@@ -101,7 +161,11 @@ class DolbyUserSerializerTest(TestCase):
             'registration_code': '123',
             'phone_number': '234',
         }
-        response = client.post('/update/', data, format = 'json')
+        response = client.post(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
         response_data = json.loads(response.content)
         # check success update
         self.assertEqual(response.status_code, 201)
@@ -109,3 +173,87 @@ class DolbyUserSerializerTest(TestCase):
         self.assertEqual(response_data.get('company'), 'bar')
         self.assertEqual(response_data.get('registration_code'), '123')
         self.assertEqual(response_data.get('phone_number'), '234')
+    
+    def test_update_user_invalid_data(self):
+        data = {
+            # basic info
+            'username': 'abcd',
+            'password': '123456',
+            # profile info
+            'company': 'bar',
+            'registration_code': '123',
+            'phone_number': '234',
+        }
+        response = client.post(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check invalid input
+        self.assertEqual(response.status_code, 400)
+
+    def test_update_user_bad_request(self):
+        data = {
+            # basic info
+            'username': 'abcd',
+            'password': '123456',
+            'email': 'ayhg@gmail.com',
+            # profile info
+            'company': 'bar',
+            'registration_code': '123',
+            'phone_number': '234',
+        }
+        response = client.get(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+        response = client.put(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+        response = client.patch(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+        response = client.delete(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+        response = client.head(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+        response = client.options(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        self.assertEqual(response.status_code, 404)
+    
+    def test_update_user_no_csrf(self):
+        data = {
+            # basic info
+            'username': 'abcd',
+            'password': '123456',
+            'email': 'cdefg@gmail.com',
+            # profile info
+            'company': 'bar',
+            'registration_code': '123',
+            'phone_number': '234',
+        }
+        response = client.post(
+            'http://testserver/update/', 
+            json = data, 
+        )
+        # check failed csrf validation
+        self.assertEqual(response.status_code, 403)
