@@ -1,7 +1,32 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.db.models.signals import post_migrate
+from django.contrib.auth.models import User, Permission, Group
+from django.contrib.contenttypes.models import ContentType
+from django.dispatch import receiver
+
+"""
+according to stackoverflow post: 
+http://stackoverflow.com/questions/25024795/django-1-7-where-to-put-the-code-to-add-groups-programatically
+use this signal receiver to initialize database state
+"""
+@receiver(post_migrate)
+def init_groups(sender, **kwargs):
+    # design permission group
+    try: 
+        add_perm = Permission.objects.get(codename = 'add_group')
+        change_perm = Permission.objects.get(codename = 'change_group')
+        delete_perm = Permission.objects.get(codename = 'delete_group')
+        # client
+        client, created = Group.objects.get_or_create(name='client')
+        client.save() 
+        # admin
+        admin, created = Group.objects.get_or_create(name='admin')
+        admin.permissions.add(add_perm, change_perm, delete_perm)
+        admin.save()
+    except Permission.DoesNotExist:
+        pass
 
 # email field force unique
 User._meta.get_field('email').__dict__['_unique'] = True

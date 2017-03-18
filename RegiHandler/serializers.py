@@ -42,10 +42,11 @@ class DolbyUserSerializer(serializers.Serializer):
             user = User(
                 username = validated_data.get('username'),
                 email = validated_data.get('email'),
-                password = validated_data.get('password'),
                 first_name = validated_data.get('first_name', None), # not required
                 last_name = validated_data.get('last_name', None)    # not required
             )
+            # force password hashing
+            user.set_password(validated_data.get('password'))
             user.save()
             # get DolbyUser data
             dolbyuser_data = validated_data.get('dolbyuser')
