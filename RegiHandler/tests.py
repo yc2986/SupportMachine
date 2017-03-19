@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 
 import json
 # rest framework
@@ -314,3 +315,51 @@ class DolbyUserSerializerTest(TestCase):
         )
         # check failed csrf validation
         self.assertEqual(response.status_code, 403)
+    
+    def test_user_group_client(self):
+        data = {
+            # basic info
+            'username': 'yc2986',
+            'password': '123456',
+            'email': 'chengyuzhou1992@gmail.com',
+            # profile info
+            'company': 'dolby laboratories',
+            'registration_code': '123456',
+            'phone_number': '1234567890',
+        }
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check successful registration
+        self.assertEqual(response.status_code, 200)
+        # check client group
+        username = json.loads(response.content).get('username')
+        user = User.objects.get(username = username)
+        self.assertTrue(user.groups.filter(name = 'client').exists())
+        self.assertFalse(user.is_staff)
+
+    def test_user_group_admin(self):
+        data = {
+            # basic info
+            'username': 'yc2986',
+            'password': '123456',
+            'email': 'yuzhou.cheng@dolby.com',
+            # profile info
+            'company': 'dolby laboratories',
+            'registration_code': '123456',
+            'phone_number': '1234567890',
+        }
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check successful registration
+        self.assertEqual(response.status_code, 200)
+        # check client group
+        username = json.loads(response.content).get('username')
+        user = User.objects.get(username = username)
+        self.assertTrue(user.groups.filter(name = 'admin').exists())
+        self.assertTrue(user.is_staff)

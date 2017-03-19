@@ -1,9 +1,13 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
 from RegiHandler.models import DolbyUser
 from rest_framework import serializers
+
+# user group
+client_group = Group.objects.get(name = 'client')
+admin_group = Group.objects.get(name = 'admin')
 
 # email validator
 def EmailValidator(email):
@@ -73,6 +77,21 @@ class DolbyUserSerializer(serializers.Serializer):
                     phone_number = dolbyuser_data.get('phone_number')
                 )
                 dlb_user.save()
+
+                # check email and company for admin permission
+                # granted permission for Dolby Laboratory user with @dolby.com email address
+                if (
+                    dlb_user.company == 'dolby laboratories' and 
+                    user.email[user.email.find('@'):] == '@dolby.com'
+                   ):
+                    # grant admin group permission
+                    user.groups.add(admin_group)
+                    # grant staff access permission
+                    user.is_staff = True
+                    user.save()
+                else:
+                    user.groups.add(client_group)
+                
                 return user, 200
     
     """
