@@ -47,7 +47,7 @@ class DolbyUserSerializerTest(TestCase):
         # check successful registration
         self.assertEqual(response.status_code, 200)
     
-    def test_create_user_invalid_data(self):
+    def test_create_user_incomplete_data(self):
         data = {
             # basic info
             'username': 'abc',
@@ -64,6 +64,44 @@ class DolbyUserSerializerTest(TestCase):
         )
         # check invalid input
         self.assertEqual(response.status_code, 400)
+    
+    def test_create_user_invalid_email(self):
+        data = {
+            # basic info
+            'username': 'abcde',
+            'password': '123456',
+            'email': 'abcdgmail.com',
+            # profile info
+            'company': 'dolby laboratories',
+            'registration_code': '123456',
+            'phone_number': '1234567890',
+        }
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check successful registration
+        self.assertEqual(response.status_code, 400)
+    
+    def test_create_user_duplicated_email(self):
+        data = {
+            # basic info
+            'username': 'abcde',
+            'password': '123456',
+            'email': 'abcd@gmail.com',
+            # profile info
+            'company': 'dolby laboratories',
+            'registration_code': '123456',
+            'phone_number': '1234567890',
+        }
+        response = client.post(
+            'http://testserver/register/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check successful registration
+        self.assertEqual(response.status_code, 402)
     
     def test_create_user_bad_request(self):
         data = {
@@ -174,11 +212,30 @@ class DolbyUserSerializerTest(TestCase):
         self.assertEqual(response_data.get('registration_code'), '123')
         self.assertEqual(response_data.get('phone_number'), '234')
     
-    def test_update_user_invalid_data(self):
+    def test_update_user_incomplete_data(self):
         data = {
             # basic info
             'username': 'abcd',
             'password': '123456',
+            # profile info
+            'company': 'bar',
+            'registration_code': '123',
+            'phone_number': '234',
+        }
+        response = client.post(
+            'http://testserver/update/', 
+            json = data, 
+            headers = {'X-CSRFToken': csrftoken}
+        )
+        # check invalid input
+        self.assertEqual(response.status_code, 400)
+
+    def test_update_user_invalid_email(self):
+        data = {
+            # basic info
+            'username': 'abcd',
+            'password': '123456',
+            'email': 'abcdgmail.com',
             # profile info
             'company': 'bar',
             'registration_code': '123',

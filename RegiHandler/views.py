@@ -27,6 +27,7 @@ status code: {
     200: success creating user
     301: user already exist
     400: invalid input data
+    402: duplicate email
     404: bad request type
 }
 """
