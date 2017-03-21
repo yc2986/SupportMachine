@@ -1,2 +1,4 @@
-# ignore pyc
-*.pyc
+*
+# ignore everything except
+!.gitignore
+!__init__.py

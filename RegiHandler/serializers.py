@@ -5,10 +5,6 @@ from django.core.validators import validate_email
 from RegiHandler.models import DolbyUser
 from rest_framework import serializers
 
-# user group
-client_group = Group.objects.get(name = 'client')
-admin_group = Group.objects.get(name = 'admin')
-
 # email validator
 def EmailValidator(email):
     try:
@@ -88,12 +84,12 @@ class DolbyUserSerializer(serializers.Serializer):
                     user.email[user.email.find('@'):] == '@dolby.com'
                    ):
                     # grant admin group permission
-                    user.groups.add(admin_group)
+                    user.groups.add(Group.objects.get(name = 'admin'))
                     # grant staff access permission
                     user.is_staff = True
                     user.save()
                 else:
-                    user.groups.add(client_group)
+                    user.groups.add(Group.objects.get(name = 'client'))
                 
                 return {
                     'message': 'successfully created user',
