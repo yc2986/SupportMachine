@@ -46,7 +46,7 @@ class DolbyUserSerializerTest(TestCase):
             headers = {'X-CSRFToken': csrftoken}
         )
         # check successful registration
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
     
     def test_create_user_incomplete_data(self):
         data = {
@@ -82,7 +82,7 @@ class DolbyUserSerializerTest(TestCase):
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        # check successful registration
+        # check invalid input
         self.assertEqual(response.status_code, 400)
     
     def test_create_user_duplicated_email(self):
@@ -101,8 +101,8 @@ class DolbyUserSerializerTest(TestCase):
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        # check successful registration
-        self.assertEqual(response.status_code, 402)
+        # check already exist record
+        self.assertEqual(response.status_code, 403)
     
     def test_create_user_bad_request(self):
         data = {
@@ -120,37 +120,37 @@ class DolbyUserSerializerTest(TestCase):
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.put(
             'http://testserver/register/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.patch(
             'http://testserver/register/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.delete(
             'http://testserver/register/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.head(
             'http://testserver/register/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.options(
             'http://testserver/register/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
     
     def test_create_user_already_exist(self):
         data = {
@@ -169,7 +169,7 @@ class DolbyUserSerializerTest(TestCase):
             headers = {'X-CSRFToken': csrftoken}
         )
         # check duplicate registration
-        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response.status_code, 403)
     
     def test_create_user_no_csrf(self):
         data = {
@@ -196,8 +196,8 @@ class DolbyUserSerializerTest(TestCase):
             'password': '123456',
             'email': 'cdef@gmail.com',
             # profile info
-            'company': 'bar',
-            'registration_code': '123',
+            'company': 'foo',
+            'registration_code': '123456',
             'phone_number': '234',
         }
         response = client.post(
@@ -207,10 +207,8 @@ class DolbyUserSerializerTest(TestCase):
         )
         response_data = json.loads(response.content)
         # check success update
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response_data.get('email'), 'cdef@gmail.com')
-        self.assertEqual(response_data.get('company'), 'bar')
-        self.assertEqual(response_data.get('registration_code'), '123')
         self.assertEqual(response_data.get('phone_number'), '234')
     
     def test_update_user_incomplete_data(self):
@@ -266,37 +264,37 @@ class DolbyUserSerializerTest(TestCase):
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.put(
             'http://testserver/update/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.patch(
             'http://testserver/update/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.delete(
             'http://testserver/update/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.head(
             'http://testserver/update/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
         response = client.options(
             'http://testserver/update/', 
             json = data, 
             headers = {'X-CSRFToken': csrftoken}
         )
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 400)
     
     def test_update_user_no_csrf(self):
         data = {
@@ -333,7 +331,7 @@ class DolbyUserSerializerTest(TestCase):
             headers = {'X-CSRFToken': csrftoken}
         )
         # check successful registration
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         # check client group
         username = json.loads(response.content).get('username')
         user = User.objects.get(username = username)
@@ -357,7 +355,7 @@ class DolbyUserSerializerTest(TestCase):
             headers = {'X-CSRFToken': csrftoken}
         )
         # check successful registration
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         # check client group
         username = json.loads(response.content).get('username')
         user = User.objects.get(username = username)

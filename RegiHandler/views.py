@@ -24,10 +24,9 @@ def index(request):
 """
 user registration api
 status code: {
-    200: success creating user
-    301: user already exist
-    400: invalid input data
-    402: duplicate email
+    201: success creating user
+    400: bad request
+    403: record already exist/csrf validation error
     404: bad request type
 }
 """
@@ -37,19 +36,22 @@ def registration(request):
         data = JSONParser().parse(request)
         serializer = DolbyUserSerializer(data = data)
         if serializer.is_valid():
-            status = serializer.create(serializer.validated_data)[1]
-            return JsonResponse(serializer.data, status = status)
-        return JsonResponse({'error': 'invalid input data'}, status = 400)
-    return JsonResponse({'error': 'bad request'}, status = 404)
+            data, status = serializer.create(serializer.validated_data)
+            return JsonResponse(data, status = status)
+        return JsonResponse({
+            'message': 'invalid input data',
+        }, status = 400)
+    return JsonResponse({
+        'message': 'bad request type',
+    }, status = 400)
 
 # update user profile
 """
 user profile update api
 status code: {
-    201: success updating user
-    400: invalid input data
-    401: user does not exist
-    404: bad request
+    200: success updating user
+    400: bad request
+    404: user does not exist
 }
 """
 def update_profile(request):
@@ -62,9 +64,15 @@ def update_profile(request):
         try:
             user = User.objects.get(username = data.get('username'))
         except User.DoesNotExist:
-            return JsonResponse({'error': 'user does not exist'}, status = 401)
+            return JsonResponse({
+                'message': 'record does not exist',
+            }, status = 404)
         if serializer.is_valid():
-            status = serializer.update(user, serializer.validated_data)[1]
-            return JsonResponse(serializer.data, status = status)
-        return JsonResponse({'error': 'invalid input data'}, status = 400)
-    return JsonResponse({'error': 'bad request'}, status = 404)
+            data, status = serializer.update(user, serializer.validated_data)
+            return JsonResponse(data, status = status)
+        return JsonResponse({
+            'error': 'invalid input data',
+        }, status = 400)
+    return JsonResponse({
+        'message': 'bad request type',
+    }, status = 400)

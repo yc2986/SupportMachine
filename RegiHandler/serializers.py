@@ -37,11 +37,10 @@ class DolbyUserSerializer(serializers.Serializer):
         )
     
     """
-    record creation api                                  <br/>
-    status code: {                                       <br/>
-        200: success creating user                       <br/>
-        301: user already exist, return existing record  <br/>
-        402: email already exist, return existing record <br/>
+    record creation api            <br/>
+    status code: {                 <br/>
+        201: success creating user <br/>
+        403: record already exist  <br/>
     }
     @return (user, status_code)
     @param validated_data    [in]    rest_framework serializers validated_data object
@@ -50,12 +49,16 @@ class DolbyUserSerializer(serializers.Serializer):
         # check if username is already exist first
         try:
             user = User.objects.get(username = validated_data.get('username'))
-            return user, 301
+            return {
+                'message': 'username exists',
+            }, 403
         except User.DoesNotExist:
             # check duplicate email second
             try:
                 user = User.objects.get(email = validated_data.get('email'))
-                return user, 402
+                return {
+                    'message': 'email exists',
+                }, 403
             except User.DoesNotExist:
                 # create basic user model
                 user = User(
@@ -92,12 +95,20 @@ class DolbyUserSerializer(serializers.Serializer):
                 else:
                     user.groups.add(client_group)
                 
-                return user, 200
+                return {
+                    'message': 'successfully created user',
+                    'username': user.username,
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'company': user.dolbyuser.company,
+                    'phone_number': user.dolbyuser.phone_number,
+                }, 201
     
     """
     record update api                                    <br/>
     status code: {                                       <br/>
-        201: success updating user                       <br/>
+        200: success updating user                       <br/>
     }
     @return (user, status_code)
     @param instance          [in]    instance of user for update
@@ -112,31 +123,38 @@ class DolbyUserSerializer(serializers.Serializer):
         self.update_helper(instance, 'first_name', validated_data)
         self.update_helper(instance, 'last_name', validated_data)
         # update phone number
-        self.update_helper(instance, 'phone_number', validated_data, is_dolby = True)
+        self.update_helper(instance, 'phone_number', validated_data)
         # update profile first
         instance.dolbyuser.save()
         # update info last
         instance.save()
-        return instance, 201
+        return {
+            'message': 'successfully updated user',
+            'username': instance.username,
+            'email': instance.email,
+            'first_name': instance.first_name,
+            'last_name': instance.last_name,
+            'company': instance.dolbyuser.company,
+            'phone_number': instance.dolbyuser.phone_number,
+        }, 200
     
     """
     update helper
     """
-    def update_helper(self, instance, key, validated_data, is_dolby = False):
+    def update_helper(self, instance, key, validated_data):
         if validated_data.get(key, None) is not None:
             if key == 'password':
                 instance.set_password(validated_data.get('password')) 
             else:
-                if is_dolby:
-                    setattr(instance.dolbyuser, key, validated_data(key))
-                else:
-                    setattr(instance, key, validated_data.get(key))
+                setattr(instance, key, validated_data.get(key))
+        elif validated_data.get('dolbyuser').get(key, None) is not None:
+            setattr(instance.dolbyuser, key, validated_data.get('dolbyuser').get(key))
 
     """
-    record create/update api                             <br/>
-    status code: {                                       <br/>
-        200: success creating user                       <br/>
-        201: success updating user                       <br/>
+    record create/update api       <br/>
+    status code: {                 <br/>
+        200: success updating user <br/>
+        201: success creating user <br/>
     }
     @return (user, status_code)
     @param validated_data    [in]    rest_framework serializers validated_data object
