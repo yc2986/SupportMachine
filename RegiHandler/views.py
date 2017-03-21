@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 # rest related
 # serializer
@@ -25,9 +26,8 @@ def index(request):
 user registration api
 status code: {
     201: success creating user
-    400: bad request
+    400: bad request/invalid input data
     403: record already exist/csrf validation error
-    404: bad request type
 }
 """
 def registration(request):
@@ -44,6 +44,56 @@ def registration(request):
     return JsonResponse({
         'message': 'bad request type',
     }, status = 400)
+
+# user authentication and login
+"""
+user authentication api
+status code: {
+    200: login success
+    400: bad request
+    401: login failed
+    403: csrf validation error
+}
+"""
+def login_user(request):
+    if request.user.is_authenticated:
+        return JsonResponse({
+            'message': 'user already logged in',
+        }, status = 400)
+    # authentication
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        user = authenticate(
+            username = data.get('username'), 
+            password = data.get('password'),
+        )
+        if user is not None:
+            login(request, user)
+            return JsonResponse({
+                'message': 'login success',
+                'username': user.username,
+            }, status = 200)
+        else:
+            return JsonResponse({
+                'message': 'login failed',
+            }, status = 401)
+    return JsonResponse({
+        'message': 'bad request type',
+    }, status = 400)
+
+# logout
+"""
+user logout api
+status code: {
+    200: logout success
+}
+"""
+@csrf_exempt
+def logout_user(request):
+    logout(request)
+    return JsonResponse({
+        'message': 'logout success'
+    }, status = 200)
 
 # update user profile
 """

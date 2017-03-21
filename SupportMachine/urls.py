@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^$', regi_views.index, name = 'index'),
     url(r'^token/$', regi_views.token, name = 'token'),
     url(r'^register/$', regi_views.registration, name = 'registration'),
-    url(r'^update/$', regi_views.update_profile, name = 'update_profile'),
+    url(r'^login/$', regi_views.login_user, name = 'login'),
+    url(r'^logout/$', regi_views.logout_user, name = 'logout'),
+    url(r'^update/$', regi_views.update_profile, name = 'update'),
 ]
